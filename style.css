@@ -999,5 +999,24 @@ h2::after {
 .doc-title { font-weight: 500; line-height: 1.3; }
 .doc-desc { font-size: .9rem; opacity: .75; }
 .doc-cta { margin-top: auto; font-size: .9rem; font-weight: 500; }
-.lang-btn { margin-left: auto; margin-right: .75rem; padding: .35rem .75rem; border: 1px solid rgba(128,128,128,.5); border-radius: 999px; background: transparent; color: inherit; font: inherit; font-size: .85rem; cursor: pointer; }
-.lang-btn:hover { border-color: currentColor; }
+.lang-switch { display: inline-flex; margin-left: auto; margin-right: .75rem; border: 1px solid rgba(128,128,128,.5); border-radius: 999px; overflow: hidden; }
+.lang-opt { padding: .35rem .8rem; border: 0; background: transparent; color: inherit; font: inherit; font-size: .85rem; cursor: pointer; opacity: .6; }
+.lang-opt:hover { opacity: 1; }
+.lang-opt[aria-pressed="true"] { background: currentColor; opacity: 1; }
+.lang-opt[aria-pressed="true"] { color: #fff; }
+.shot.vertical { aspect-ratio: 9 / 16; max-width: 320px; background: #000; }
+.shot.vertical video { width: 100%; height: 100%; object-fit: contain; }
+
+.sub-h { margin: 2.5rem 0 .5rem; font-size: 1.1rem; }
+.docs { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.25rem 0 2rem; }
+.doc { display: flex; flex-direction: column; gap: .5rem; padding: 1.25rem; border: 1px solid rgba(128,128,128,.35); border-radius: 12px; text-decoration: none; color: inherit; transition: transform .2s, border-color .2s; }
+.doc:hover { transform: translateY(-3px); border-color: currentColor; }
+.doc-title { font-weight: 500; line-height: 1.3; }
+.doc-desc { font-size: .9rem; opacity: .75; }
+.doc-cta { margin-top: auto; font-size: .9rem; font-weight: 500; }
+
+.lang-switch { display: inline-flex; margin-left: auto; margin-right: .75rem; border: 1px solid rgba(128,128,128,.5); border-radius: 999px; overflow: hidden; }
+.lang-opt { padding: .35rem .8rem; border: 0; background: transparent; color: inherit; font: inherit; font-size: .85rem; cursor: pointer; opacity: .6; }
+.lang-opt:hover { opacity: 1; }
+.lang-opt[aria-pressed="true"] { background: currentColor; opacity: 1; }
+.lang-opt[aria-pressed="true"] { color: #fff; }
