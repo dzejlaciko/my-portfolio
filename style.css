@@ -342,12 +342,9 @@ h2 {
 .prose p {
   margin: 0 0 1rem;
   line-height: 1.75;
+  text-align: left;
 }
 
-/* text aligned on both sides, only on wider screens */
-@media (min-width: 600px) {
-  .prose p { text-align: justify; }
-}
 /* ---------- tabs (Professional / Personal) ---------- */
 .tabs {
   display: flex;
@@ -385,11 +382,9 @@ h2 {
 .tl li { max-width: 70ch; }
 .prose p, .blk p { max-width: 70ch; }
 
-/* text aligned on both sides (wider screens only) */
-@media (min-width: 600px) {
-  .prose p,
-  .tl .d p { text-align: justify; }
-}
+/* text aligned to the left */
+.prose p,
+.tl .d p { text-align: left; }
 
 /* ---------- "What I'm into" cards ---------- */
 .interests {
@@ -504,7 +499,6 @@ body::after  { width: 380px; height: 380px; background: #d9c8ff; bottom: -140px;
 
 .stage .desc { margin: 1.2rem 0 0; max-width: 56ch; text-align: left; }
 .stage .btns { justify-content: flex-start; }
-@media (min-width: 600px) { .stage .desc { text-align: justify; } }
 
 /* ---------- stickers ---------- */
 .sticker {
@@ -688,8 +682,8 @@ h2::after {
   max-width: 54ch;
   color: var(--muted);
   line-height: 1.75;
+  text-align: left;
 }
-@media (min-width: 600px) { .desc2 { text-align: justify; } }
 .hero2 .btns { justify-content: flex-start; }
 
 /* round photo with a slowly turning ring */
@@ -754,6 +748,7 @@ h2::after {
 .hero-stack .desc2 {
   max-width: 62ch;
   margin: 1.5rem auto 0;
+  text-align: left;
 }
 .hero-stack .btns { justify-content: center; margin-top: 1.8rem; }
 /* ---------- polaroids next to the portrait ---------- */
@@ -843,33 +838,164 @@ h2::after {
 .wall .polaroid:nth-of-type(3) { rotate: -3deg; margin-top: 0;    animation-delay: -5s; }
 .wall .polaroid:nth-of-type(4) { rotate: 6deg;  margin-top: 45px; animation-delay: -2s; }
 .wall .polaroid:nth-of-type(5) { rotate: -5deg; margin-top: 15px; animation-delay: -4s; }
-/* ---------- floating polaroid wall (main page) ---------- */
-.wall {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1.8rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 1.25rem 3.5rem;
+/* ---------- SafeLine gallery ---------- */
+.shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.2rem;
 }
-.wall-title {
-  flex-basis: 100%;
-  margin: 0 0 0.5rem;
+.shot {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--blush);
+  box-shadow: 0 10px 24px rgba(120, 40, 80, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.shot.wide { grid-column: 1 / -1; }
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+.shot:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(184, 58, 115, 0.2);
+}
+.shot:hover img { transform: scale(1.03); }
+
+@media (max-width: 600px) {
+  .shots { grid-template-columns: 1fr; }
+}
+/* three photos in a row */
+.shots.cols3 {
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .shots.cols3 { grid-template-columns: 1fr; }
+}
+/* ================= GALLERY, VIDEO, INSTAGRAM BOX ================= */
+.shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.shots.cols3 { grid-template-columns: repeat(3, 1fr); align-items: start; }
+
+.shot {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--blush);
+  box-shadow: 0 10px 24px rgba(120, 40, 80, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.shot img { display: block; width: 100%; height: auto; transition: transform 0.5s ease; }
+.shot:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(184, 58, 115, 0.2); }
+.shot:hover img { transform: scale(1.03); }
+
+.shot.vid video { display: block; width: 100%; height: auto; background: #000; }
+.shot.vid:hover { transform: none; }
+
+.more {
+  margin-top: 1.8rem;
+  padding: 1.4rem 1.5rem;
   text-align: center;
-  font-family: var(--hand);
-  font-size: 1.7rem;
-  color: var(--berry);
+  background: #fff7fa;
+  border: 1px dashed var(--berry);
+  border-radius: 18px;
 }
-.wall .polaroid {
-  position: relative;
-  width: clamp(140px, 17vw, 190px);
-  padding: 0.6rem 0.6rem 2.4rem;
+.more p { margin: 0 auto 1rem; }
+
+@media (max-width: 700px) {
+  .shots, .shots.cols3 { grid-template-columns: 1fr; }
 }
-.wall .polaroid .photo { aspect-ratio: 3 / 4; }
-.wall .polaroid:nth-of-type(1) { rotate: -6deg; margin-top: 10px; animation-delay: -1s; }
-.wall .polaroid:nth-of-type(2) { rotate: 5deg;  margin-top: 55px; animation-delay: -3s; }
-.wall .polaroid:nth-of-type(3) { rotate: -3deg; margin-top: 0;    animation-delay: -5s; }
-.wall .polaroid:nth-of-type(4) { rotate: 6deg;  margin-top: 45px; animation-delay: -2s; }
-.wall .polaroid:nth-of-type(5) { rotate: -5deg; margin-top: 15px; animation-delay: -4s; }
+/* ---------- photo lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 4rem 1rem 1.5rem;
+  background: rgba(45, 34, 48, 0.88);
+  backdrop-filter: blur(6px);
+  animation: lbfade 0.25s ease;
+}
+.lightbox[hidden] { display: none; }
+.lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 5.5rem);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.lb-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font: 500 1rem var(--sans);
+  color: #fff;
+  background: var(--berry);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+@keyframes lbfade { from { opacity: 0; } }
+/* DN Stein card colour (stone and espresso) */
+.v4 {
+  background-image: linear-gradient(120deg, #efe3d4, #f8f1e8, #e6d3bb);
+  color: #4a3320;
+}
+
+/* buttons for presentation / prototype links */
+.linkrow { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.6rem; }
+/* DN Stein page: same size, left-aligned text */
+.plain .lede,
+.plain .blk p,
+.plain .blk li {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  text-align: left;
+}
+.plain .blk p { margin: 0 0 1rem; max-width: 70ch; }
+.plain .blk ul:not(.facts) { padding-left: 1.2rem; max-width: 70ch; }
+.plain .blk ul:not(.facts) li { margin-bottom: 0.5rem; }
+.plain .blk .facts li { font-size: 0.9rem; line-height: 1.4; }
+/* Werkstatt card colour (warm taupe and plum, from the slide) */
+.v5 {
+  background-image: linear-gradient(120deg, #ebe6e2, #f6f3f0, #d9cfc8);
+  color: #2f0e1f;
+}
+
+/* project pages: same size, left-aligned text */
+.linkrow { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.6rem; }
+.plain .lede,
+.plain .blk p,
+.plain .blk li {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  text-align: left;
+}
+.plain .blk p { margin: 0 0 1rem; max-width: 70ch; }
+.plain .blk ul:not(.facts) { padding-left: 1.2rem; max-width: 70ch; }
+.plain .blk ul:not(.facts) li { margin-bottom: 0.5rem; }
+.plain .blk .facts li { font-size: 0.9rem; line-height: 1.4; }
+.shot.vertical { aspect-ratio: 9 / 16; max-width: 320px; }
+.shot.vertical video { width: 100%; height: 100%; object-fit: cover; }
+.shot.vertical { aspect-ratio: 9 / 16; max-width: 320px; background: #000; }
+.shot.vertical video { width: 100%; height: 100%; object-fit: contain; }
+
+.sub-h { margin: 2.5rem 0 .5rem; font-size: 1.1rem; }
+.docs { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.25rem 0 2rem; }
+.doc { display: flex; flex-direction: column; gap: .5rem; padding: 1.25rem; border: 1px solid rgba(128,128,128,.35); border-radius: 12px; text-decoration: none; color: inherit; transition: transform .2s, border-color .2s; }
+.doc:hover { transform: translateY(-3px); border-color: currentColor; }
+.doc-title { font-weight: 500; line-height: 1.3; }
+.doc-desc { font-size: .9rem; opacity: .75; }
+.doc-cta { margin-top: auto; font-size: .9rem; font-weight: 500; }

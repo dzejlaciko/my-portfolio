@@ -50,3 +50,43 @@
     });
   }
 })();
+/* photo lightbox */
+(function () {
+  var links = document.querySelectorAll('.shot:not(.vid)');
+  if (!links.length) return;
+
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.hidden = true;
+  box.innerHTML = '<button type="button" class="lb-close" aria-label="Close">✕ Close</button><img alt="">';
+  document.body.appendChild(box);
+
+  var img = box.querySelector('img');
+  var closeBtn = box.querySelector('.lb-close');
+
+  function openBox(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    box.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeBox() {
+    box.hidden = true;
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var im = a.querySelector('img');
+      openBox(a.getAttribute('href'), im ? im.alt : '');
+    });
+  });
+
+  box.addEventListener('click', function (e) { if (e.target !== img) closeBox(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !box.hidden) closeBox();
+  });
+})();
