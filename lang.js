@@ -8,7 +8,8 @@
     'Professional': 'Profesionalno',
     'Personal': 'Lično',
     'Contact': 'Kontakt',
-    'Back to projects': 'Nazad na projekte'
+    'Back to projects': 'Nazad na projekte',
+    'Back to main page': 'Nazad na početnu'
   };
 
   document.querySelectorAll('.menu summary, .panel a, .back').forEach(function (el) {
