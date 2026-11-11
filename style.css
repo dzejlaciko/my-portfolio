@@ -1020,3 +1020,6 @@ h2::after {
 .lang-opt:hover { opacity: 1; }
 .lang-opt[aria-pressed="true"] { background: currentColor; opacity: 1; }
 .lang-opt[aria-pressed="true"] { color: #fff; }
+.cv { text-align: center; padding: 3rem 1.25rem 1rem; }
+.cv h2 { margin-bottom: .5rem; }
+.cv p { margin: 0 auto 1.25rem; max-width: 36rem; }
